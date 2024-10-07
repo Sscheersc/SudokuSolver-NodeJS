@@ -51,7 +51,7 @@ module.exports = function (app) {
         }
   
         // Validate puzzle and value characters
-        if (!/^[1-9.]+$/.test(puzzle) || !/^[1-9]$/.test(value)) {
+        if (!/^[1-9.]+$/.test(puzzle)) {
           return res.json({ error: 'Invalid characters in puzzle' });
         }
   
@@ -64,7 +64,12 @@ module.exports = function (app) {
         if (!/^[A-I][1-9]$/.test(coordinate)) {
           return res.json({ error: 'Invalid coordinate' });
         }
-  
+
+        // Validate Value format (1-9)
+        if (!/^[1-9]$/.test(value)) {
+          return res.json({ error: 'Invalid value' })
+        }
+        
         // Validate puzzle (grid formation and overall structure)
         let validation = solver.validate(puzzle);
         if (validation !== true) {
