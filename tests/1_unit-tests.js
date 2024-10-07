@@ -31,8 +31,9 @@ suite('Unit Tests', () => {
   test('Logic handles an invalid row placement', function(done) {
     let grid = solver.convertToGrid('..839.7.575.....964..1.......16.29846.9.312.7..754.....62..5.78.8...3.2...492...1');
     let row = 0;
+    let col = 0;
     let num = '3'; // This should be invalid since 3 already exists in row 0
-    assert.isFalse(solver.checkRowPlacement(grid, row, num));
+    assert.isFalse(solver.checkRowPlacement(grid, row, col, num));
     done();
   });
   
@@ -46,7 +47,7 @@ suite('Unit Tests', () => {
   test('Logic handles an invalid column placement', () => {
     const puzzle = '5..91372.3...8.5.9.9.25..8.68.47.23...95..46.7.4.....5.2.......4..8916..85.72...5'; // Duplicate '5' in column
     const grid = solver.convertToGrid(puzzle);
-    assert.isFalse(solver.checkColPlacement(grid, 0, '5'));
+    assert.isFalse(solver.checkColPlacement(grid, 0, 1, '5'));
   });
 
   test('Logic handles a valid region (3x3 grid) placement', () => {
