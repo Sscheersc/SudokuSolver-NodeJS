@@ -87,10 +87,12 @@ module.exports = function (app) {
         // If there are conflicts, return them
         if (conflicts.length > 0) {
           return res.json({ valid: false, conflict: conflicts });
+        } else{
+          // Otherwise, return valid
+          res.json({ valid: true });
         }
   
-        // Otherwise, return valid
-        res.json({ valid: true });
+        
       } catch (err) {
         console.error(err);
         res.status(500).json({ error: 'Internal Server Error' });
